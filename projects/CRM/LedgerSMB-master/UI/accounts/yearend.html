@@ -1,0 +1,93 @@
+<?lsmb INCLUDE 'ui-header.html' ?> 
+<?lsmb PROCESS elements.html ?> 
+<body class="lsmb <?lsmb dojo_theme ?>">
+<form data-dojo-type="lsmb/lib/Form" method="post" action="<?lsmb request.script ?>">
+<table width="100%">
+  <tr><th class="listtop"><?lsmb text('Post Yearend') ?></th></tr>
+  <tr><td> </td></tr>
+  <tr>
+    <td>
+      <table width="100%">
+        <tr>
+          <th align="right"><?lsmb text('Yearend') ?></th>
+          <td><?lsmb PROCESS input element_data={
+            class = 'date',
+            name = 'end_date',
+            size = 11,
+            title = user.dateformat,
+            } -?></td>
+        </tr>
+        <tr>
+          <th align="right"><?lsmb text('Reference') ?></th>
+          <td><?lsmb PROCESS input element_data={
+            name = 'reference',
+            size = 20,
+            value = text('Yearend'),
+            } -?></td>
+        </tr>
+        <tr>
+          <th align="right"><?lsmb text('Description') ?></th>
+          <td><?lsmb PROCESS textarea element_data={
+            name = 'description',
+            rows = 3,
+            cols = 50,
+            } -?></td>
+        </tr>
+        <tr>
+          <th align="right"><?lsmb text('Retained Earnings') ?></th>
+          <?lsmb FOREACH opt = eoy.earnings_accounts; 
+                     opt.text = opt.accno _ '--' _ opt.description;
+		           END -?>
+          <td><?lsmb PROCESS select element_data={
+                     name = "retention_acc_id"
+                     options = eoy.earnings_accounts
+                     value_attr = "id"
+                } -?></td>
+        </tr>
+<tr><td colspan="2">
+<hr size="3" noshade="noshade" />
+<?lsmb FOREACH hidden IN eoy.hiddens.keys;
+	       PROCESS input element_data={
+		      type = 'hidden',
+		      name = hidden,
+		      value = hiddens.item(hidden)
+		}; END ?></td>
+</tr>
+<tr>
+<td align="right">
+<?lsmb PROCESS button element_data = {
+	name = "action"
+	type = "submit"
+	class = "submit"
+	value = "post_yearend"
+	text = text('Post Yearend') #'
+} ?></td></tr>
+<tr><th colspan="2" class="listtop"><?lsmb text('Re-open Books') ?></th></tr>
+<tr><th align="right"><?lsmb text('Books closed on') ?></th>
+    <td><?lsmb closed_date ?></td>
+<tr>
+          <th align="right"><?lsmb text('Re-Open As Of') ?></th>
+          <td><?lsmb PROCESS input element_data={
+            class = 'date',
+            name = 'reopen_date',
+            size = 11,
+            title = user.dateformat,
+            } -?></td></tr>
+<tr>
+<tr><td colspan="2">
+<hr size="3" noshade="noshade" /></td></tr>
+<td align="right">
+<?lsmb PROCESS button element_data = {
+	name = "action"
+	type = "submit"
+	class = "submit"
+	value = "reopen_books"
+	text = text('Reopen Books') #'
+} ?></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

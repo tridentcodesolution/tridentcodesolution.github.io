@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "D:\...\OnlineCC_SP\", "..\..\WebSites\OnlineCC_SP\", "{5E29676E-68C9-4BBC-A55D-4247C17C05CD}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.VirtualPath = "/OnlineCC_SP"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\WebSites\OnlineCC_SP\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\OnlineCC_SP\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/OnlineCC_SP"
+		Release.AspNetCompiler.PhysicalPath = "..\..\WebSites\OnlineCC_SP\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\OnlineCC_SP\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "1161"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E29676E-68C9-4BBC-A55D-4247C17C05CD}.Debug|.NET.ActiveCfg = Debug|.NET
+		{5E29676E-68C9-4BBC-A55D-4247C17C05CD}.Debug|.NET.Build.0 = Debug|.NET
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

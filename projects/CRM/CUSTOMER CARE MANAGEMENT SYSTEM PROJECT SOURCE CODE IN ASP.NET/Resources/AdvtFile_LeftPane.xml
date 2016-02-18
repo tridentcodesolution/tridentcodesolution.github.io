@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Advertisements>
+
+  <Ad>
+    <ImageUrl>PostBox.gif</ImageUrl>
+    <NavigateUrl>www.chinnajeeyar.org</NavigateUrl>
+    <AlternateText>GoodEat</AlternateText>
+    <Impressions>50</Impressions>
+  </Ad>
+  <Ad>
+    <ImageUrl>GlobalFinance.gif</ImageUrl>
+    <NavigateUrl>www.Mango.com</NavigateUrl>
+    <AlternateText>Best Mango</AlternateText>
+    <Impressions>50</Impressions>
+  </Ad>
+  <Ad>
+    <ImageUrl>life_cycle153x85.gif</ImageUrl>
+    <NavigateUrl>www.Homes.com</NavigateUrl>
+    <AlternateText>GoodHome</AlternateText>
+    <Impressions>50</Impressions>
+  </Ad>
+ 
+</Advertisements>
+

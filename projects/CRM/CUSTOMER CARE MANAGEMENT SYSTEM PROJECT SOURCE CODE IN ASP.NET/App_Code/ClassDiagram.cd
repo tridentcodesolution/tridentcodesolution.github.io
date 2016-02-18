@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Class Name="BLLogin">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>App_Code\BLLogin.cs</FileName>
+      <HashCode>AAAAEAAAAAAAACAABAAAAAAAAAAAAAAGAQAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLPostQry">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>App_Code\BLPostQry.cs</FileName>
+      <HashCode>AAAAAAAAKAAgAAAAAAEAAQAAQCBAAAAEAIAAgAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLPrevSoln">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>App_Code\BLPrevSoln.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAEAIACAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLQrySt">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>App_Code\BLQrySt.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAIEAAAAAAAEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="clsCon">
+    <Position X="2.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>App_Code\clsCon.cs</FileName>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAABAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="clsDALayer">
+    <Position X="4" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>App_Code\clsDALayer.cs</FileName>
+      <HashCode>AAAgAAAAAAAAAAQAAAAgAAAAEAAAACABAAACAAAAQAE=</HashCode>
+    </TypeIdentifier>
+  </Class>
+</ClassDiagram>

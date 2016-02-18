@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<HHeaderLinks>
+  <Link>
+    <id>1</id>
+    <Name>Home</Name>
+    <Operations>~/HomePage.aspx</Operations>
+  </Link>
+
+  <Link>
+    <id>2</id>
+    <Name>Operations</Name>
+    <Operations>~/HeaderContents/Operations.aspx</Operations>
+  </Link>
+  <Link>
+    <id>3</id>
+    <Name>Customers</Name>
+    <Operations>~/CustomerPages/CCHome.aspx</Operations>
+  </Link>
+  <Link>
+    <id>4</id>
+    <Name>Employee Login</Name>
+    <Operations>~/Login.aspx</Operations>
+  </Link>
+
+  <Link>
+    <id>5</id>
+    <Name>Careers</Name>
+    <Operations>~/HeaderContents/Careers.aspx</Operations>
+  </Link>
+
+
+  <Link>
+    <id>6</id>
+    <Name>About Us</Name>
+    <Operations>~/HeaderContents/AboutUs.aspx</Operations>
+  </Link>
+
+  <Link>
+    <id>7</id>
+    <Name>Contact Us</Name>
+    <Operations>~/HeaderContents/ContactUs.aspx</Operations>
+  </Link>
+
+
+</HHeaderLinks>

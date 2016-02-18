@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<Advertisements>
+
+  <Ad>
+    <ImageUrl>Free.gif</ImageUrl>
+    <NavigateUrl>www.datapoint.com</NavigateUrl>
+    <AlternateText>BestSeaShore</AlternateText>
+    <Impressions>50</Impressions>
+  </Ad>
+  
+  
+  <Ad>
+    <ImageUrl>NRI201_632.gif</ImageUrl>
+    <NavigateUrl>www.datapoint.com</NavigateUrl>
+    <AlternateText>BoatHouse</AlternateText>
+    <Impressions>50</Impressions>
+  </Ad>  
+</Advertisements>
+

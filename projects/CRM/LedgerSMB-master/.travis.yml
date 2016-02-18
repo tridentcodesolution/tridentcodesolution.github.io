@@ -1,0 +1,108 @@
+# run on container-based build:
+sudo: false
+language: perl
+env:
+  global:
+    # ledgersmb org uses Chris Travers' keys
+    - secure: UF72BIXXxkPTIJTV4jl3Sm2eg9JdSK0yNqZLdlF2eDc9M1WldvIOr2qg9zJDcBW7M3qB7wKbyBk6PMcqLcY7mCOVTHQB1ORJa8F4dLTK0JFbGLqARAheCrYjQPhy8cIySbV1yFs5hrP2KeTXd0ZcS0bA+MyK0azMRztu+P3WD80=
+    - secure: Htra4bK1HEcUoxtraW+Usv+xXuTlIAuMQDWDc7rrMKLKZMNDuC9buuGbOaXDJx1Rty8h05gMkEcN7LD0fD9FhFzDOW7cnKfYHtysH+Gq1a21TZIKb3lgT4n0344Qg/7FuoV9zUl7WWzW5bg6TYvchdOasJ9CVl4n92dYsr4Y+Ck=
+    # einhverfr user uses Chris Travers' keys
+    - secure: R6gsxVa7jZv6fvEyVi9+WiSRYwxnObYQdyuWNXKyybDSs+V+viJPuTomD6sZvkgNyP8YvSGiMRaRCchmLfBlMSbgvVGTpC8lHbhp/uXh3+ruA/fGHfDJnhEMqbOv0FDLvrivkfU98UP87lWms3HwYrq+wjfkVRRfFNdrjLTOVVk=
+    - secure: a9+NnKLUPrEi1+Xu2nHpUPPDOVMgwXkF2zfY1mhRJCGZ4dMHyLzGx731Zz8nvZrYCjWwEBD5AhzHQEH5eOiir6aWTMA2QaEjY7zzOakYVG36xzigA5X5B+TNi559EpuVPIbT80iHt99ec2WImudUCDnjC+3nAh3KYzhQQ7Wm9r0=
+    # ehuelsmann user uses Erik Huelsmann's keys
+    - secure: q9IckmvMBEEQ6EeM4U8K4y96Lx6tEaxs/A5GYUJxNJVhUkx3YqJKeERArZc4fpoV3CtUCFPDs/tktiFJn1LDeh3s9vJitUAGMU2AQxiUNARXK4EkEdPhvbX+CtusIIKDXYwEqXLiymv6mmpcc9/19CvHUzr9CiKZbb/LpS8lWqc=
+    - secure: cZKPTfU0h4rH2IIRr1Ds1XRPDrloe/K+menYm+VK54hE4MM2zTtNDmWn0fyPdeHeJDRrTF0pyobje8RG9E2Ld5YPHXve1/lVkieoPeqzm9V8hlvZlkgTQJiMAvKzjhSlUJx8AKPjX+jQZfhgAS1hnuWwOIB1cAA7fMpPJ7rPVWo=
+
+matrix:
+  include:
+    # change to 5.22 when that is supported
+    - perl: '5.20'
+      addons:
+        postgresql: '9.4'
+        sauce_connect: true
+        apt:
+          packages:
+            - nginx
+      env:
+        - TEST_SAUCE=1
+    - perl: '5.20'
+      addons:
+        postgresql: "9.4"
+        apt:
+          packages:
+            - nginx
+      env:
+        - COVERAGE=1
+    - perl: '5.18'
+      addons:
+        postgresql: "9.4"
+        apt:
+          packages:
+            - nginx
+      env:
+        - COA_TESTING=1
+    - perl: '5.16'
+      addons:
+        postgresql: "9.3"
+        apt:
+          packages:
+            - nginx
+      env:
+        - DB_TESTING=1
+    - perl: '5.14'
+      addons:
+        postgresql: "9.2"
+        apt:
+          packages:
+            - nginx
+      env:
+        - DB_TESTING=1
+    - perl: '5.12'
+      addons:
+        postgresql: "9.2"
+        apt:
+          packages:
+            - nginx
+      env:
+        - DB_TESTING=1
+    - perl: '5.10'
+      addons:
+        postgresql: "9.3"
+        apt:
+          packages:
+            - nginx
+
+before_install:
+  - git clone git://github.com/travis-perl/helpers ~/travis-perl-helpers
+  - source ~/travis-perl-helpers/init
+  - build-perl 2>/dev/null
+  - perl -V
+  - build-dist 2>/dev/null
+  - cd $BUILD_DIR             # $BUILD_DIR is set by the build-dist command
+
+install:
+  - cpan-install --deps  2>/dev/null   # installs prereqs, including recommends
+  - cpan-install --coverage   # installs converage prereqs, if enabled
+  - cpan-install Plack CGI::Emulate::PSGI Selenium::Remote::Driver
+  - cpan-install X12::Parser
+
+before_script:
+  - coverage-setup 2>/dev/null
+  - export DEVEL_COVER_OPTIONS=+ignore,"\.lttc\$"
+  - ((phantomjs --webdriver=4422 2>/dev/null >/dev/null &) && echo "PhantomJS started succesfully") || (echo "Failed to start PhantomJS!" ; exit 1)
+  - PERL5OPT="$PERL5OPT $HARNESS_PERL_SWITCHES" plackup --port 5001 --server HTTP::Server::PSGI tools/starman.psgi >/dev/null 2>/dev/null &
+  - sed -e "s#{ROOT}#$PWD#" conf/nginx-travis.conf >/tmp/nginx.conf
+  - cp conf/ledgersmb.conf.travis-ci ledgersmb.conf
+  - nginx -c /tmp/nginx.conf
+
+script:
+  - export RELEASE_TESTING=1 && yes n | perl Makefile.PL && PGUSER=postgres PGPASSWORD=test LSMB_TEST_DB=1 LSMB_NEW_DB=lsmb13installtest LSMB_BASE_URL="http://localhost:5000" make test
+
+after_success:
+  - >
+    if [ "$COVERAGE" != "0" ] ; then
+       curl http://localhost:5001/stop.pl ;
+       while [ -n "$(jobs -r | grep starman.psgi)" ] ; do sleep 1; echo -n "." ; done ;
+       echo "" ;
+    fi
+  - coverage-report

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Advertisements>
+
+  <Ad>
+    <ImageUrl>ad1.gif</ImageUrl>
+    <NavigateUrl>www.datapoint.com</NavigateUrl>
+    <AlternateText>BestSeaShore</AlternateText>
+    <Impressions>50</Impressions>
+  </Ad>
+  <Ad>
+    <ImageUrl>ad2.gif</ImageUrl>
+    <NavigateUrl>www.datapoint.com</NavigateUrl>
+    <AlternateText>BoatHouse</AlternateText>
+    <Impressions>50</Impressions>
+  </Ad>
+  <Ad>
+    <ImageUrl>wirelessAd.gif</ImageUrl>
+    <NavigateUrl>www.datapoint.com</NavigateUrl>
+    <AlternateText>BoatHouse</AlternateText>
+    <Impressions>50</Impressions>
+  </Ad>
+</Advertisements>
